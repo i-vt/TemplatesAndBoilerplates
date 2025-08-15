@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Dashboard')}"></head>
+<body>
+<div th:replace="~{fragments :: nav}"></div>
+<main class="container">
+    <h1>Dashboard</h1>
+    <p>Welcome back, <b th:text="${user != null ? user.username : 'friend'}">friend</b>!</p>
+    <ul>
+        <li>Only authenticated users can see this page.</li>
+    </ul>
+</main>
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>
