@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Public')}"></head>
+<body>
+<div th:replace="~{fragments :: nav}"></div>
+<main class="container">
+    <h1>Public page</h1>
+    <p>This page is visible to everyone.</p>
+    <p th:if="${user != null}">You're signed in as <b th:text="${user.username}">user</b>.</p>
+    <p th:if="${user == null}">Want more? <a th:href="@{/login}">Log in</a> to see your dashboard.</p>
+</main>
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>
