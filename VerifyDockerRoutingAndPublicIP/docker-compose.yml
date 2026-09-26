@@ -1,0 +1,30 @@
+name: wireguard-ip-test
+
+services:
+  # Default bridge networking: egress traffic is forwarded by the host and
+  # masqueraded (NAT), so the host's routing table / policy rules decide
+  # the path. This is the service that answers "does my container go
+  # through the host's WireGuard tunnel?"
+  bridge-test:
+    build: .
+    environment:
+      TEST_NAME: "default bridge network (NAT via host)"
+
+  # Control group: host networking always shows exactly what the host sees.
+  host-test:
+    build: .
+    network_mode: host
+    environment:
+      TEST_NAME: "host network (control - always identical to host)"
+
+  # Optional pattern, shown for reference: route a container through a
+  # WireGuard sidecar (e.g. gluetun) instead of the host's tunnel:
+  #
+  #   wireguard:
+  #     image: qmcgaw/gluetun
+  #     cap_add: [NET_ADMIN]
+  #     environment:
+  #       - VPN_SERVICE_PROVIDER=yourprovider
+  #   app-through-vpn:
+  #     build: .
+  #     network_mode: service:wireguard   # shares the WG namespace
