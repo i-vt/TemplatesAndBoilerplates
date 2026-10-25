@@ -1,0 +1,15 @@
+{
+  "name": "404-tracker",
+  "version": "1.0.0",
+  "description": "Track and display 404 hits with IP geolocation",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "geoip-lite": "^1.4.10",
+    "better-sqlite3": "^9.4.3"
+  }
+}

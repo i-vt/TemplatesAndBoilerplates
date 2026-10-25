@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  tracker:
+    build: .
+    container_name: 404-tracker
+    ports:
+      - "8742:8742"
+    volumes:
+      # Persist the SQLite database across restarts
+      - tracker-data:/app/data
+    environment:
+      - NODE_ENV=production
+      - PORT=8742
+    restart: unless-stopped
+    # Forward real client IPs when behind a reverse proxy
+    # (uncomment if using nginx/traefik in front)
+    # labels:
+    #   - "traefik.enable=true"
+
+volumes:
+  tracker-data:
+    driver: local
